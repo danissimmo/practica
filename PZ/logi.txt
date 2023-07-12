@@ -1,0 +1,55 @@
+Cost-Benefits Analysis
+	Development cost
+		Projected cost
+		Demand cost
+		Development cost
+		Test cost
+		Executive condition
+	Business cost
+		Employee
+		Based installation
+			Sub Topic
+			Sub Topic
+		Facility
+		Supplies
+		Contractor
+		COTS
+	Non-recurring cost
+		Research
+		Purchase
+		Training
+		Traveling business
+		Welfare
+			Pension
+			Maternity leave
+			Redundancy pay
+			Relocation payment
+		Business interrupted
+	Capital cost
+		Vehicle
+		Website
+		Security and privacy
+		Communication equipment
+		License
+	Recurrent cost
+		Salary
+		Rental
+		Office supplies
+		Maintenance cost
+	Benefits
+		Tangible benefits
+			1
+			2
+			3
+		Intangible benefits
+			Reputation
+			Brand
+			Experience
+			Knowledge
+			 Financing ability
+			Opportunity
+			Customer
+			Business partner
+	Balance 
+		Total Cost
+		Total benefit

@@ -1,0 +1,55 @@
+Source; Target; distance
+Development cost;Cost-Benefits Analysis;1
+Projected cost;Development cost;1
+Demand cost;Development cost;1
+Development cost;Development cost;1
+Test cost;Development cost;1
+Executive condition;Development cost;1
+Business cost;Cost-Benefits Analysis;1
+Employee;Business cost;1
+Based installation;Business cost;1
+Sub Topic;Business cost;1
+Sub Topic;Business cost;1
+Facility;Business cost;1
+Supplies;Business cost;1
+Contractor;Business cost;1
+COTS;Business cost;1
+Non-recurring cost;Cost-Benefits Analysis;1
+Research;Non-recurring cost;1
+Purchase;Non-recurring cost;1
+Training;Non-recurring cost;1
+Traveling business;Non-recurring cost;1
+Welfare;Non-recurring cost;1
+Pension;Non-recurring cost;1
+Maternity leave;Non-recurring cost;1
+Redundancy pay;Non-recurring cost;1
+Relocation payment;Non-recurring cost;1
+Business interrupted;Non-recurring cost;1
+Capital cost;Cost-Benefits Analysis;1
+Vehicle;Capital cost;1
+Website;Capital cost;1
+Security and privacy;Capital cost;1
+Communication equipment;Capital cost;1
+License;Capital cost;1
+Recurrent cost;Cost-Benefits Analysis;1
+Salary;Recurrent cost;1
+Rental;Recurrent cost;1
+Office supplies;Recurrent cost;1
+Maintenance cost;Recurrent cost;1
+Benefits;Cost-Benefits Analysis;1
+Tangible benefits;Benefits;1
+1;Benefits;1
+2;Benefits;1
+3;Benefits;1
+Intangible benefits;Benefits;1
+Reputation;Benefits;1
+Brand;Benefits;1
+Experience;Benefits;1
+Knowledge;Benefits;1
+Financing ability;Benefits;1
+Opportunity;Benefits;1
+Customer;Benefits;1
+Business partner;Benefits;1
+Balance;Cost-Benefits Analysis;1
+Total Cost;Balance;1
+Total benefit;Balance;1
