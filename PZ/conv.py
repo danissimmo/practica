@@ -45,9 +45,8 @@ def parse_mindmap(input_file, output_file):
     level = 1
     parent_nodes = [node_string]
 
-    output_file.write("Source; Target; distance\n")
+    output_file.write("Source;Target;distance\n")
     print_child_nodes(input_file, output_file, node_string, "", level)
-
 
 if __name__ == "__main__":
     input_file_name = sys.argv[1]
