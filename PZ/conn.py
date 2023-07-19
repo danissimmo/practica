@@ -12,25 +12,50 @@ uri = "bolt://localhost:7687"
 # Инициализация драйвера базы данных Neo4j
 driver = GraphDatabase.driver(uri, auth=("neo4j", "Fedoseev2002"))
 
+
+def generate_id(source):
+    sourceID = source.replace(' ', '_')
+    sourceID = sourceID.replace('-', '_')
+    sourceID = sourceID.replace('\'', '_')
+    print(sourceID)
+    if sourceID[0].isdigit():
+        sourceID = '_' + sourceID
+    return sourceID
+
+
 # Открываем файл CSV и читаем данные
 with open('out.csv') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=";")
+    nodes = set()
+
     for row in reader:
-        print(row)
-        source = row['Source']
-        target = row[' Target']
-        distance = row[' distance']
+        source = row['Target']
+        target = row['Source']
+        distance = row['distance']
 
         # Создаем соединение с базой данных
         with driver.session() as session:
-            # Создаем узлы для каждого уникального значения Source и Target
-            session.run("MERGE (s:source {name: $source}) "
-                        "MERGE (t:target {name: $target})",
-                        source=source, target=target)
+            if source not in nodes:
+                sourceID = generate_id(source)
+
+                mergeStr = "MERGE (" + sourceID + ":s {name: $source})"
+
+                session.run(mergeStr, source=source)
+                nodes.add(source)
+                print(source)
+
+            if target not in nodes:
+                targetID = generate_id(target)
+
+                mergeStr = "MERGE (" + targetID + ":s {name: $target})"
+
+                session.run(mergeStr, target=target)
+                nodes.add(target)
+                print(target)
 
             # Создаем связи между узлами Source и Target с заданным значением distance
-            session.run("MATCH (s:source {name: $source}) "
-                        "MATCH (t:target {name: $target}) "
+            session.run("MATCH (s {name: $source}) "
+                        "MATCH (t {name: $target}) "
                         "MERGE (s)-[:TO {dist: $distance}]->(t)",
                         source=source, target=target, distance=distance)
 
