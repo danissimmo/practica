@@ -2,28 +2,37 @@ from neo4j import GraphDatabase
 import csv
 
 # Настройки подключения к базе данных Neo4j
-uri = "neo4j+s://88e2b798.databases.neo4j.io"
-username = "neo4j"
-password = "wy7RKQfoOF7KgTVajafzyN2F7OF77HshQGZqnWv7R50"
+uri = "bolt://localhost:7687"
+# username = "neo4j"
+# password = "wy7RKQfoOF7KgTVajafzyN2F7OF77HshQGZqnWv7R50"
 
 # Путь к CSV-файлу с данными
-csv_file_path = "C:\Study\MAI\practica\log.csv"
+# csv_file_path = "out.csv"
 
 # Инициализация драйвера базы данных Neo4j
-driver = GraphDatabase.driver(uri, auth=(username, password))
+driver = GraphDatabase.driver(uri, auth=("neo4j", "Fedoseev2002"))
 
-# Открытие сессии
-with driver.session() as session:
-    # Создание индекса на уникальное поле (если требуется)
-    session.run("CREATE CONSTRAINT ON (n:NodeLabel) ASSERT n.unique_field_name IS UNIQUE")
+# Открываем файл CSV и читаем данные
+with open('out.csv') as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=";")
+    for row in reader:
+        print(row)
+        source = row['Source']
+        target = row[' Target']
+        distance = row[' distance']
 
-    # Открытие CSV-файла и чтение данных
-    with open(csv_file_path, "r") as file:
-        csv_reader = csv.DictReader(file)
+        # Создаем соединение с базой данных
+        with driver.session() as session:
+            # Создаем узлы для каждого уникального значения Source и Target
+            session.run("MERGE (s:source {name: $source}) "
+                        "MERGE (t:target {name: $target})",
+                        source=source, target=target)
 
-        # Импорт данных в базу данных
-        for row in csv_reader:
-            # Используйте значения из CSV-файла для создания узлов или связей
-            query = "CREATE (n:NodeLabel {property1: $value1, property2: $value2})"
-            parameters = {"value1": row["column1"], "value2": row["column2"]}
-            session.run(query, parameters)
+            # Создаем связи между узлами Source и Target с заданным значением distance
+            session.run("MATCH (s:source {name: $source}) "
+                        "MATCH (t:target {name: $target}) "
+                        "MERGE (s)-[:TO {dist: $distance}]->(t)",
+                        source=source, target=target, distance=distance)
+
+# Закрываем соединение с базой данных Neo4j
+driver.close()
